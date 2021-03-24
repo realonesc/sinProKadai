@@ -1,0 +1,56 @@
+import 'package:flutter/material.dart';
+
+final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+
+        body: Center(
+          child: MyWidget(),
+        ),
+      ),
+    );
+  }
+}
+
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    
+    var text = '';
+    
+    for (var i = 1; i <= 100; i++) {
+      
+      var fizzBuzz;
+      
+      if (i.remainder(3) == 0) {
+          fizzBuzz = "Fizz";
+      }
+      else if (i.remainder(5) == 0) {
+          fizzBuzz = "Buzz";
+      }
+      else if (i.remainder(15) == 0) {
+          fizzBuzz = "FizzBuzz";
+      }
+       
+      else {
+          fizzBuzz = "";
+      }
+      
+      text =  '$text $i $fizzBuzz \n';
+      
+    }
+    
+    return Text(text.toString());
+    
+  } 
+}

@@ -1,0 +1,53 @@
+import 'package:flutter/material.dart';
+import 'dart:math';
+
+final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+
+        body: Center(
+          child: MyWidget(),
+        ),
+      ),
+    );
+  }
+}
+
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    
+    var random = new Random();
+    var text = '';
+    
+    for (var i = 1; i <= 10; i++) {
+      
+      var oddOrEven;
+      
+      var randomInt = random.nextInt(99);
+      
+      if (randomInt.isEven) {
+        oddOrEven = "偶数";
+      }
+      else if (randomInt.isOdd) {
+        oddOrEven = "奇数";
+      }
+      
+      text =  '$text $randomInt $oddOrEven \n';
+      
+    }
+    
+    return Text(text.toString());
+    
+  } 
+}

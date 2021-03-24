@@ -1,0 +1,91 @@
+import 'package:flutter/material.dart';
+import 'dart:math';
+
+final Color darkBlue = Color.fromARGB(255, 18, 32, 47);
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: darkBlue),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+
+        body: Center(
+          child: MyWidget(),
+        ),
+      ),
+    );
+  }
+}
+
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    
+    var random = new Random();
+    
+    var text = ""; 
+    
+    for(var i = 0; i <= 9; i++) {
+      var player1 = random.nextInt(3);
+      var player2 = random.nextInt(3);
+      var winner = getWinner(player1, player2);
+      
+      var player1Hand = getHand(player1);
+      var player2Hand = getHand(player2);
+      
+      
+      text = '$text A:$player1Hand B:$player2Hand $winner \n';
+    }
+    
+    return Text(text);
+  }
+  
+  // 0: rock, 1: paper, 2: scissors
+  String getWinner(player1, player2) {
+    if (player1 == player2) {
+      return("引き分け");
+    }
+    
+    else if (player1 == 0 && player2 == 2) {
+      return("Aの勝ち");
+    }
+    else if (player1 == 1 && player2 == 0) {
+      return("Aの勝ち");
+    }
+    else if (player1 == 2 && player2 == 1) {
+      return("Aの勝ち");
+    }
+    
+    else if (player2 == 0 && player1 == 2) {
+      return("Bの勝ち");
+    }
+    else if (player2 == 1 && player1 == 0) {
+      return("Bの勝ち");
+    }
+    else if (player2 == 2 && player1 == 1) {
+      return("Bの勝ち");
+    }
+    else {
+      return("");
+    }
+  }
+  
+  String getHand(player) {
+    if (player == 0) {
+      return("グー");
+    }
+    else if (player == 1) {
+      return("パー");
+    }    
+    else if (player == 2) {
+      return("チョキ");
+    }
+  }
+  
+}
